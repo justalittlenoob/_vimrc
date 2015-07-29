@@ -20,13 +20,13 @@ syntax enable
 "Show Line Number
 :set number
 "set init size
-set lines=35 columns=160
+set lines=35 columns=80
 "Toggle Menu and Toolbar
 set guioptions-=m
 set guioptions-=T
 
 "Color=?
-colorscheme github
+colorscheme mac_classic 
 "Shutdown backup
 set nobackup
 "Font=?
@@ -50,7 +50,11 @@ let Tlist_Exit_OnlyWindow=1
 
 "click F12 to run with python.exe
 map <C-F12> :!python.exe %
-imap jj <Esc>
+imap jk <Esc>
+":map <MouseDown> <C-Y>
+":map <S-MouseDown> <C-U>
+":map <MouseUp> <C-E>
+":map <S-MouseUp> <C-D>
 "code auto finish 
 filetype plugin indent on
 set completeopt=longest,menu
@@ -71,4 +75,16 @@ let g:pydiction_location = 'D:\Program Files\Vim\vim74\ftplugin\complete-dict'
 
 "auto tabs
 autocmd FileType python setlocal et sta sw=4 sts=4
+
+"tab switch shortcut key settings
+:nn <M-1> 1gt
+:nn <M-2> 2gt
+:nn <M-3> 3gt
+:nn <M-4> 4gt
+:nn <M-5> 5gt
+:nn <M-6> 6gt
+:nn <M-7> 7gt
+:nn <M-8> 8gt
+:nn <M-9> 9gt
+:nn <M-0> :tablast<CR>
 
