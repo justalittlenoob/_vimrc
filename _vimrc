@@ -2,7 +2,7 @@
 
 :set nocompatible
 syntax enable 
- "´¦ÀíÎÄ±¾ÖĞÏÔÊ¾ÂÒÂë
+ "å¤„ç†æ–‡æœ¬ä¸­æ˜¾ç¤ºä¹±ç 
        set encoding=utf-8
        set fileencodings=utf-8,chinese,latin-1
        if has("win32")
@@ -11,11 +11,11 @@ syntax enable
        set fileencoding=utf-8
        endif
      
-       "´¦Àí²Ëµ¥¼°ÓÒ¼ü²Ëµ¥ÂÒÂë
+       "å¤„ç†èœå•åŠå³é”®èœå•ä¹±ç 
        source $VIMRUNTIME/delmenu.vim
        source $VIMRUNTIME/menu.vim
      
-       "´¦ÀíconsleÊä³öÂÒÂë
+       "å¤„ç†consleè¾“å‡ºä¹±ç 
        language messages zh_CN.utf-8
 "Show Line Number
 :set number
@@ -58,7 +58,7 @@ imap jk <Esc>
 "code auto finish 
 filetype plugin indent on
 set completeopt=longest,menu
-"×Ô¶¯²¹È«ÃüÁîÊ±ºòÊ¹ÓÃ²Ëµ¥Ê½Æ¥ÅäÁĞ±í 
+"è‡ªåŠ¨è¡¥å…¨å‘½ä»¤æ—¶å€™ä½¿ç”¨èœå•å¼åŒ¹é…åˆ—è¡¨ 
 set wildmenu
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -88,3 +88,20 @@ autocmd FileType python setlocal et sta sw=4 sts=4
 :nn <M-9> 9gt
 :nn <M-0> :tablast<CR>
 
+"è‡ªåŠ¨è¡¥å…¨æ‹¬å·
+inoremap ' ''<ESC>i
+inoremap " ""<ESC>i
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap { {<CR>}<ESC>O
+
+"è®¾ç½®è·³å‡ºè‡ªåŠ¨è¡¥å…¨çš„æ‹¬å·
+func SkipPair()  
+    if getline('.')[col('.') - 1] == ')' || getline('.')[col('.') - 1] == ']' || getline('.')[col('.') - 1] == '"' || getline('.')[col('.') - 1] == "'" || getline('.')[col('.') - 1] == '}'  
+        return "\<ESC>la"  
+    else  
+        return "\t"  
+    endif  
+endfunc  
+" å°†tabé”®ç»‘å®šä¸ºè·³å‡ºæ‹¬å·  
+inoremap <TAB> <c-r>=SkipPair()<CR>
